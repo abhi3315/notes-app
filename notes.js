@@ -1,8 +1,14 @@
 const fs = require('fs')
 const chalk = require('chalk')
 
-const getNotes = () => {
-    return 'Your notes...'
+const listNotes = () => {
+    const notes = loadNotes()
+    if (notes.length > 0) {
+        console.log(chalk.green.inverse('Your notes...'))
+        notes.map(note => console.log(note.title))
+    } else {
+        console.log(chalk.red.inverse('No notes added!'))
+    }
 }
 
 const addNotes = (title, body) => {
@@ -50,7 +56,7 @@ const loadNotes = () => {
 }
 
 module.exports = {
-    getNotes,
+    listNotes,
     addNotes,
     removeNote
 }
